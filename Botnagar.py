@@ -8,6 +8,10 @@ import Tokens
 # Data.py contains quotes, 8ball responses, and nicknames
 from Data import *
 
+# Krypto.py can solve integer and fractional Krypto
+# Krypto.main(<string>) takes in a comma separated string
+# n1, n2, n3, n4, n5, target
+import Krypto
 
 # Beta switches to beta Botnagar
 BETA = False
