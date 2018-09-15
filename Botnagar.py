@@ -102,7 +102,7 @@ ball = [
 '*{AUTHOR}, you are of the knowing of it!*',
 '*Ask me later, {AUTHOR}...*',
 '*You know... There ARE people who think yes!*',
-'*You may be doing it!*'
+'*{AUTHOR}, you may be doing it!*'
 ]
 
 PrimeScore = {
