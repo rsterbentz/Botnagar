@@ -63,7 +63,7 @@ async def on_message(message):
     else:
         AUTHOR = str(message.author)[:-5]
 
-    if message.content.startswith('!bhat roll'):
+    if message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
