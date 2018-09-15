@@ -36,6 +36,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    # This block determines nickname of AUTHOR
+    if str(message.author)[:-5] in users:
+        AUTHOR = users[str(message.author)[:-5]]
+    else:
+        AUTHOR = str(message.author)[:-5]
+
     # Bhat can interject in any channel
     elif 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
@@ -56,12 +62,6 @@ async def on_message(message):
     # standard build only posts in bhatnagar
     elif BETA == False and str(message.channel) != 'bhatnagar':
         return
-
-    # This block determines nickname of AUTHOR
-    if str(message.author)[:-5] in users:
-        AUTHOR = users[str(message.author)[:-5]]
-    else:
-        AUTHOR = str(message.author)[:-5]
 
     if message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
