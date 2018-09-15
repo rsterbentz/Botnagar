@@ -84,7 +84,7 @@ async def on_message(message):
     elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
         msg = '''```
    ___________       ___________
- /__________ /|     |\ __________\
+ /__________ /|     |\ __________\ 
 |           | |     | |           |
 |           | |     | |           |
 |           | |     | |           |
