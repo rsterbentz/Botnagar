@@ -1,11 +1,17 @@
 # Must be run in python 3.4 - 3.6
 
 import discord, random
+import Tokens # Tokens.py contains discord tokens for beta and release bhat - not in git
 # import Krypto
 # ^ To be implemented
 
 # Beta switches to beta Botnagar
 BETA = False
+
+if BETA:
+    TOKEN = Tokens.RELEASE
+else:
+    TOKEN = Tokens.BETA
 
 client = discord.Client()
 
