@@ -82,14 +82,13 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
-        msg = '''```
-      _____________                _____________
- / ____________  / |          | \  ____________ \
-|                               |   |          |   |                               |
-|                               |   |          |   |                               |
-|                               |   |          |   |                               |
-|                               |   |          |   |                               |
-| _____________ | /            \ | _____________ |```'''
+        msg = '''```   ___________       ___________
+ /__________ /|     |\ __________\
+|           | |     | |           |
+|           | |     | |           |
+|           | |     | |           |
+|           | |     | |           |
+|___________|/       \|___________|```'''
         await client.send_message(message.channel, msg)
 
     elif message.content.startswith('!bhat info'):
