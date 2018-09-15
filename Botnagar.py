@@ -26,6 +26,7 @@ users = {
 }
 
 quotes = [
+'github test',
 '*You know, {AUTHOR}, there is so much to look around!*',
 '*Yes, {AUTHOR}, this is really the real substance of life!*',
 '*Unfortunately, {AUTHOR}, there is no fanciful term we can use for this!*',
