@@ -36,7 +36,9 @@ players = {}
 
 class Bet:
     def __init__(self, label, amt, ratio, one-time = False):
-        pass
+        self.label = label
+        self.amt = amt
+
 
 class Player:
     def __init__(self, bank, label):
@@ -59,8 +61,6 @@ class Player:
         'hard8': 0,       # bet for 4 and 4   (standing)         9:1
         'hard10': 0       # bet for 5 and 5   (standing)         7:1
         }
-
-
 
     def __str__(self):
         s = '{name} has ${bank}'.format(name = self.label, bank = self.bank)
@@ -86,25 +86,3 @@ class Player:
 
     def leavegame(self):
         pass
-
-
-
-
-
-p1 = Player(bank = 100, label = 'Thomas')
-^^^^
-p2 = Player(bank = 5, label = 'Harrison')
-
-str(4) - '4'
-
-p2.add1000()
-
-str(12) -> '12'
-
-p1.bank -> 100
-p2.bank -> 5
-
-players = []
-players.append(  player(bank = 100, label = 'Thomas') )
-
-Thomas.bank -> 100
