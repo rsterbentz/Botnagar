@@ -10,7 +10,7 @@ from Data import *
 
 
 # Beta switches to beta Botnagar
-BETA = False
+BETA = True
 if BETA:
     TOKEN = Tokens.BETA
 else:
@@ -30,8 +30,6 @@ client = discord.Client()
 
 @client.event
 async def on_message(message):
-    global PrimeScore
-
     # We do not want the bot to reply to itself
     if message.author == client.user:
         return
@@ -41,6 +39,7 @@ async def on_message(message):
         AUTHOR = users[str(message.author)[:-5]]
     else:
         AUTHOR = str(message.author)[:-5]
+
 
     # Bhat can interject in any channel
     if 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
@@ -56,14 +55,14 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     # Beta build only posts in beta-bhatnagar
-    elif BETA == True and str(message.channel) != 'beta-bhatnagar':
+    elif BETA == True and str(message.channel) != 'beta-bhatnagar-fanfic':
         return
 
     # standard build only posts in bhatnagar
-    elif BETA == False and str(message.channel) != 'bhatnagar':
+    elif BETA == False and str(message.channel) != 'bhatnagar-fanfic':
         return
 
-    if message.content.startswith('!bhat 8ball'):
+    elif message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
@@ -79,7 +78,8 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
-        msg = '''      _____________                _____________
+        msg = '''
+      _____________                _____________
  / ____________  / |          | \  ____________ \
 |                               |   |          |   |                               |
 |                               |   |          |   |                               |

@@ -4,3 +4,5 @@ Tokens.py
 
 *.dat
 # Might store data (primescore) as .dat files
+
+__pycache__
