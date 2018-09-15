@@ -84,7 +84,7 @@ async def on_message(message):
     elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
         msg = '''```
    ___________       ___________
- /__________ /|     |\ __________\ 
+ /__________ /|     |\ __________\
 |           | |     | |           |
 |           | |     | |           |
 |           | |     | |           |
@@ -177,6 +177,29 @@ Below is a list of commands that I may be doing them!*
 
         msg = msg.format(AUTHOR = AUTHOR, final = final, MaxPlayer = MaxPlayer, MaxPrime = MaxPrime)
         await client.send_message(message.channel, msg)
+
+    elif message.content.startswith('!bhat krypto'):
+        s = str(message.content)[12:]
+        msg = random.choice([
+        "*Lets see, errh...*",
+        "*{AUTHOR}, I will try to be the one who will be the solver of it!*"
+        ]).format(AUTHOR = AUTHOR)
+
+        Solution = Krypto.Main(s)
+
+        if Solution == False:
+            msg = random.choice([
+            '*I\'m awfully sorry, {AUTHOR}, I couldn\'t find a soltuion*',
+            '*Err... I guess this one of the ones that cannot be of the solving it!*'
+            ])
+            await client.send_message(message.channel, msg)
+        else:
+            msg = random.choice([
+            '*Aha! I have your solution {AUTHOR}! \n*',
+            '*Looking for this now? \n*'
+            ])
+            msg = msg + solution
+            await client.send_message(message.channel, msg)
 
     elif message.content.startswith('!bhat'):
         msg = random.choice([
