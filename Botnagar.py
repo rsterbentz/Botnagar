@@ -43,7 +43,7 @@ async def on_message(message):
         AUTHOR = str(message.author)[:-5]
 
     # Bhat can interject in any channel
-    elif 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
+    if 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
         '*Did somebody say my name?*',
         '*Hello my studnets!*',
