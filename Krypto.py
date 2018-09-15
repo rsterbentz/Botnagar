@@ -1,4 +1,4 @@
-import itertools, time
+import itertools
 
 ###############################################################
 #
@@ -140,34 +140,23 @@ def InterpretSolution(s):
         s = s.replace(sub, x, 1)
     return s
 
+def Main(s): # s will be string of 5 numbers followed by the solution
+    s = s.replace(' ', '')
+    NUMBERS = []
+    for x in s.split(','):
+        NUMBERS.append(StrToQ(x))
 
+    TARGET = NUMBERS.pop(4)
+    TARGET = StrToQ(TARGET)
 
+    # Permute numbers
+    NUMBERS = list(itertools.permutations(NUMBERS))
+    # NUMBERS is the list of all permutations of NUMBERS
 
-s = input('What are the numbers? Write fractions as 2/3 with commas between.\n')
-
-s = s.replace(' ', '')
-NUMBERS = []
-for x in s.split(','):
-    NUMBERS.append(StrToQ(x))
-
-# Permute numbers
-NUMBERS = list(itertools.permutations(NUMBERS))
-# NUMBERS is the list of all permutations of NUMBERS
-
-TARGET = input('What is the target number?\n')
-TARGET = StrToQ(TARGET)
-
-
-StopAfterSolution = True
-print('\nFinding solution...')
-StartTime = time.time()
-try:
-    Solutions = Solver(NUMBERS, TARGET, StopAfterSolution)
-    print('Solution found!\n')
-    Solution = '{} = {}'.format(Solutions[0]['exp'], TARGET)
-    print('Trial {}: {}'.format(Solutions[0]['trial'], InterpretSolution(Solution)))
-except:
-    print('No solution found.')
-
-StopTime = time.time()
-print('Time elapsed: {0:.2f} seconds'.format(StopTime - StartTime))
+    StopAfterSolution = True
+    try:
+        Solutions = Solver(NUMBERS, TARGET, StopAfterSolution)
+        Solution = '{} = {}'.format(Solutions[0]['exp'], TARGET)
+        return Solution
+    except:
+        return False
