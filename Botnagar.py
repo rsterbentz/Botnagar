@@ -65,7 +65,7 @@ quotes = [
 '*{AUTHOR}, we see eye to it!*',
 '*I hate it when someone gives me the cold shudder, {AUTHOR}.*',
 '*{AUTHOR}, have you ever tasted your own medicine?*',
-'*{AUTHOR}, you are off of your ROCKS...er*',
+'*{AUTHOR}, you are off of your ROCKS...err*',
 '*You know, {AUTHOR}, you should always do unto others as you would have done unto yourself... err...*',
 '*As the blacks say, the ball is in your fort {AUTHOR}!*',
 '*Is there a method to your mad mess {AUTHOR}?*',
@@ -184,7 +184,7 @@ Below is a list of commands that I may be doing them!*
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
         response1 = random.choice([
         '*Here is the board of SCORES!*',
-        '*Do you know.. these are all PRIMES?*',
+        '*Do you know... these are all PRIMES?*',
         '*I believe this is what you might be of the looking for it?*',
         '*You know, this board contains the SCORES!*',
         '*These are of the scores of it! Yes!*'
