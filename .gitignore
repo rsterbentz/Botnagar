@@ -1,3 +1,6 @@
 Tokens.py
 # Tokens.py contains the private discord tokens for
 # Botnagar and Botnagar_BETA
+
+*.dat
+# Might store data (primescore) as .dat files

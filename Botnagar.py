@@ -11,13 +11,10 @@ from Data import *
 
 # Beta switches to beta Botnagar
 BETA = False
-
 if BETA:
     TOKEN = Tokens.BETA
 else:
     TOKEN = Tokens.RELEASE
-
-client = discord.Client()
 
 def IsPrime(n):
     m=int(n**0.5)
@@ -28,6 +25,8 @@ def IsPrime(n):
         else:
             m=m-1
     return p
+
+client = discord.Client()
 
 @client.event
 async def on_message(message):
@@ -55,7 +54,7 @@ async def on_message(message):
         return
 
     # standard build only posts in bhatnagar
-    elif BETA == False and str(message.channel) = 'bhatnagar':
+    elif BETA == False and str(message.channel) != 'bhatnagar':
         return
 
     # This block determines nickname of AUTHOR
