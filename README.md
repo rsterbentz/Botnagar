@@ -17,4 +17,4 @@ Commands:
 
 # Requirements
 
-Tokens.py - contains 2 strings, BETA and RELEASE, which holds the discord tokens for the bot.
+Tokens.py - contains 2 strings, BETA and RELEASE, which holds the private discord tokens for the bot.
