@@ -1,9 +1,8 @@
 # Must be run in python 3.4 - 3.6
 
-import discord
-import random
+import discord, random
 # import Krypto
-# ^Uncomment if you have Krypto.py
+# ^ To be implemented
 
 BETA = False
 
