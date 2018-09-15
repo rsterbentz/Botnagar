@@ -146,7 +146,7 @@ def Main(s): # s will be string of 5 numbers followed by the solution
     for x in s.split(','):
         NUMBERS.append(StrToQ(x))
 
-    TARGET = NUMBERS.pop(4)
+    TARGET = NUMBERS.pop()
 
     # Permute numbers
     NUMBERS = list(itertools.permutations(NUMBERS))
