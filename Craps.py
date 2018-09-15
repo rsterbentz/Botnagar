@@ -32,57 +32,50 @@ import random
 
 PUCK = 'OFF'
 
+# Structure: 'label': (<ratio as float>, <standing/one-time>)
+BetTypes = {
+    'snakeeyes': (31/1, 'one-time'),
+    'acedeuce':  (15/1, 'one-time'),
+    'four':      (2/1, 'standing'),
+    'five':      (3/2, 'standing'),
+    'six':       (6/5, 'standing'),
+    'bigred':    (4/1, 'one-time'),
+    'eight':     (6/5, 'standing'),
+    'nine':      (3/2, 'standing'),
+    'ten':       (2/1, 'standing'),
+    'yo':        (15/1, 'standing'),
+    'boxcars':   (31/1, 'one-time'),
+    'hard4':     (7/1, 'standing'),
+    'hard6':     (9/1, 'standing'),
+    'hard8':     (9/1, 'standing'),
+    'hard10':    (7/1, 'standing')
+}
+
+
 players = {}
 
 class Bet:
-    def __init__(self, label, amt, ratio, one-time = False):
-        self.label = label
+    def __init__(self, type, amt):
+        self.type = type
         self.amt = amt
 
 
 class Player:
-    def __init__(self, bank, label):
+    def __init__(self, bank, name):
         self.bank = bank
-        self.label = label                                    # Pass  # Don't Pass
-        self.bets = {
-        'snakeeyes' :0,   # bet for 2         (one roll only)   31:1
-        'acedeuce' :0,    # bet for 3         (one roll only)   15:1
-        'four' :0,        # bet for 4         (standing)         2:1
-        'five' :0,        # bet for 5         (standing)         3:2
-        'six' :0,         # bet for 6         (standing)         6:5
-        'bigred' :0,      # bet for 7         (one roll only)    4:1
-        'eight' :0,       # bet for 8         (standing)         6:5
-        'nine' :0,        # bet for 9         (standing)         3:2
-        'ten' :0,         # bet for 10        (standing)         2:1
-        'yo' :0,          # bet for 11        (one roll only)   15:1
-        'boxcars' :0,     # bet for 12        (one roll only)   31:1
-        'hard4': 0,       # bet for 2 and 2   (standing)         7:1
-        'hard6': 0,       # bet for 3 and 3   (standing)         9:1
-        'hard8': 0,       # bet for 4 and 4   (standing)         9:1
-        'hard10': 0       # bet for 5 and 5   (standing)         7:1
-        }
-
-    def __str__(self):
-        s = '{name} has ${bank}'.format(name = self.label, bank = self.bank)
-        return s
+        self.name = name
+        self.bets = []
 
     def bet(self, type, amt):
         # Don't make bets too large
         if amt > self.bank:
             return False
 
-        self.bets[type] = amt
+        b = Bet(type = type, amt = amt)
+        self.bets.append(b)
         self.bank = self.bank - amt
 
-        for bet in self.bets:
-            if self.bets[bet] < 0:
-                self.bets[bet] = 0
-
-    def payout(self, roll):
-        # roll is the number shown on dice
-        # roll is a tuple (d1, d2)
-        pay = 0
-        if
-
     def leavegame(self):
-        pass
+        for b in self.bets:
+            self.bank = self.bank + b.amt
+        self.bets = []
