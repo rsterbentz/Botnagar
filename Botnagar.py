@@ -106,7 +106,8 @@ Below is a list of commands that I may be doing them!*
     - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*
     - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*
     - !bhat hello *[Say hi! Don't be afraid!]*
-    - !bhat roll *[Roll some number cubes! How fun!]*'''
+    - !bhat roll *[Roll some number cubes! How fun!]*
+    - !bhat krypto *[Maybe you can't solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'''
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3 , n4 =n4)
         await client.send_message(message.channel, msg)
 
@@ -190,11 +191,11 @@ Below is a list of commands that I may be doing them!*
             await client.send_message(message.channel, msg)
         else:
             msg = random.choice([
-            '*Aha! I have your solution {AUTHOR}! \n*',
+            '*Aha! I have your solution {AUTHOR}!* \n',
             '*Looking for this now?* \n'
             ])
-            msg = msg + Solution
-            await client.send_message(message.channel, msg)
+            msg = msg + Solution + '*'
+            await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
 
     elif message.content.startswith('!bhat'):
         msg = random.choice([
