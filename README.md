@@ -13,6 +13,8 @@ Commands:
 
 !bhat hello [Say hi! Don't be afraid!]
 
+!bhat krypto *[Maybe you can't solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]
+
 # Requirements
 
 Tokens.py - contains 2 strings, BETA and RELEASE, which holds the discord tokens for the bot.
