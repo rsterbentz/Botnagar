@@ -8,10 +8,6 @@ import Tokens
 # Data.py contains quotes, 8ball responses, and nicknames
 from Data import *
 
-# Krypto.py can solve integer and fractional Krypto
-# Krypto.main(<string>) takes in a comma separated string
-# n1, n2, n3, n4, n5, target
-import Krypto
 
 # Beta switches to beta Botnagar
 BETA = False
@@ -82,6 +78,16 @@ async def on_message(message):
         msg = '*Hello, {AUTHOR}!*'.format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
+    elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
+        msg = '''      _____________                _____________
+ / ____________  / |          | \  ____________ \
+|                               |   |          |   |                               |
+|                               |   |          |   |                               |
+|                               |   |          |   |                               |
+|                               |   |          |   |                               |
+| _____________ | /            \ | _____________ |'''
+        await client.send_message(message.channel, msg)
+
     elif message.content.startswith('!bhat info'):
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
         n1 = random.randint(1, 99)
@@ -95,7 +101,8 @@ Below is a list of commands that I may be doing them!*
     - !bhat 8ball *[I enjoy giving out my advices for you!]*
     - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*
     - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*
-    - !bhat hello *[Say hi! Don't be afraid!]*'''
+    - !bhat hello *[Say hi! Don't be afraid!]*
+    - !bhat roll *[Roll some number cubes! How fun!]*'''
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3 , n4 =n4)
         await client.send_message(message.channel, msg)
 
