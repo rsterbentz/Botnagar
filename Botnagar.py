@@ -54,13 +54,13 @@ async def on_message(message):
         '*Err...*'])
         await client.send_message(message.channel, msg)
 
-    # Beta build only posts in beta-bhatnagar
-    elif BETA == True and str(message.channel) != 'beta-bhatnagar-fanfic':
-        return
-
-    # standard build only posts in bhatnagar
-    elif BETA == False and str(message.channel) != 'bhatnagar-fanfic':
-        return
+#    # Beta build only posts in beta-bhatnagar
+#    elif BETA == True and str(message.channel) != 'beta-bhatnagar-fanfic':
+#        return
+#
+#    # standard build only posts in bhatnagar
+#    elif BETA == False and str(message.channel) != 'bhatnagar-fanfic':
+#        return
 
     elif message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
