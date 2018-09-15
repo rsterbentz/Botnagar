@@ -1,4 +1,5 @@
 # Must be run in python 3.4 - 3.6
+# test
 
 import discord, random
 import Tokens # Tokens.py contains discord tokens for beta and release bhat - not in git
