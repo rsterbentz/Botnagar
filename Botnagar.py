@@ -188,13 +188,13 @@ Below is a list of commands that I may be doing them!*
             '*I\'m awfully sorry, {AUTHOR}, I couldn\'t find a soltuion*',
             '*Err... I guess this one of the ones that cannot be of the solving it!*'
             ])
-            await client.send_message(message.channel, msg)
+            await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
         else:
             msg = random.choice([
             '*Aha! I have your solution {AUTHOR}!* \n',
             '*Looking for this now?* \n'
             ])
-            msg = msg + '\n```' + Solution + '```'
+            msg = msg + '```' + Solution + '```'
             await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
 
     elif message.content.startswith('!bhat'):
