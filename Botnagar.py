@@ -10,7 +10,7 @@ from Data import *
 
 
 # Beta switches to beta Botnagar
-BETA = True
+BETA = False
 if BETA:
     TOKEN = Tokens.BETA
 else:
