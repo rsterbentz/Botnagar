@@ -9,9 +9,9 @@ import Tokens # Tokens.py contains discord tokens for beta and release bhat - no
 BETA = False
 
 if BETA:
-    TOKEN = Tokens.RELEASE
-else:
     TOKEN = Tokens.BETA
+else:
+    TOKEN = Tokens.RELEASE
 
 client = discord.Client()
 
