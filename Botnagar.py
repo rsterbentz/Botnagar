@@ -191,7 +191,7 @@ Below is a list of commands that I may be doing them!*
         else:
             msg = random.choice([
             '*Aha! I have your solution {AUTHOR}! \n*',
-            '*Looking for this now? \n*'
+            '*Looking for this now?* \n'
             ])
             msg = msg + Solution
             await client.send_message(message.channel, msg)

@@ -156,6 +156,6 @@ def Main(s): # s will be string of 5 numbers followed by the solution
     try:
         Solutions = Solver(NUMBERS, TARGET, StopAfterSolution)
         Solution = '{} = {}'.format(Solutions[0]['exp'], TARGET)
-        return Solution
+        return InterpretSolution(Solution)
     except:
         return False
