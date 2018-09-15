@@ -13,3 +13,6 @@ Commands:
 
 !bhat hello [Say hi! Don't be afraid!]
 
+# Requirements
+
+Tokens.py - contains 2 strings, BETA and RELEASE, which holds the discord tokens for the bot.
