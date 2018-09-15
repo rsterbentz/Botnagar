@@ -35,7 +35,7 @@ PUCK = 'OFF'
 players = {}
 
 class Bet:
-    def __init__(self, label, amt, odds):
+    def __init__(self, label, amt, ratio, one-time = False):
         pass
 
 class Player:
