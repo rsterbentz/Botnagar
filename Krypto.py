@@ -147,7 +147,6 @@ def Main(s): # s will be string of 5 numbers followed by the solution
         NUMBERS.append(StrToQ(x))
 
     TARGET = NUMBERS.pop(4)
-    TARGET = StrToQ(TARGET)
 
     # Permute numbers
     NUMBERS = list(itertools.permutations(NUMBERS))

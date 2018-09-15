@@ -180,11 +180,6 @@ Below is a list of commands that I may be doing them!*
 
     elif message.content.startswith('!bhat krypto'):
         s = str(message.content)[12:]
-        msg = random.choice([
-        "*Lets see, errh...*",
-        "*{AUTHOR}, I will try to be the one who will be the solver of it!*"
-        ]).format(AUTHOR = AUTHOR)
-
         Solution = Krypto.Main(s)
 
         if Solution == False:
