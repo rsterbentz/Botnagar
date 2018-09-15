@@ -4,12 +4,8 @@ import discord, random
 # import Krypto
 # ^ To be implemented
 
+# Beta switches to beta Botnagar
 BETA = False
-
-if BETA:
-    TOKEN = 'NDg0NzYxNjEyMzg1OTEwODE2.DnUK_w.btd6vRc3t36KR28AtogTfEdcYQ4'
-else:
-    TOKEN = 'NDg0NzYwMDUwODQ2NDAwNTMz.DnUjsA.pCWU_VhR0TKRGQoK1zF6EWWOK_I'
 
 client = discord.Client()
 
