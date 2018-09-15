@@ -33,16 +33,29 @@ def IsPrime(n):
 async def on_message(message):
     global PrimeScore
 
-    # we do not want the bot to reply to itself
+    # We do not want the bot to reply to itself
     if message.author == client.user:
         return
+
+    # Bhat can interject in any channel
+    elif 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
+        msg = random.choice([
+        '*Did somebody say my name?*',
+        '*Hello my studnets!*',
+        '*HERE I AM!*',
+        '*I have arrived!*',
+        '*I do believe {AUTHOR} rang?*'.format(AUTHOR = AUTHOR),
+        '*Hello, {AUTHOR}!*'.format(AUTHOR = AUTHOR),
+        '*Yes?*',
+        '*Err...*'])
+        await client.send_message(message.channel, msg)
 
     # Beta build only posts in beta-bhatnagar
     elif BETA == True and str(message.channel) != 'beta-bhatnagar':
         return
 
-    # Normal build posts everywhere else
-    elif BETA == False and str(message.channel) == 'beta-bhatnagar':
+    # standard build only posts in bhatnagar
+    elif BETA == False and str(message.channel) = 'bhatnagar':
         return
 
     # This block determines nickname of AUTHOR
@@ -156,18 +169,6 @@ Below is a list of commands that I may be doing them!*
         '*So... err...*',
         '*I\'m not sure I know what this is, {AUTHOR}.*'.format(AUTHOR = AUTHOR),
         '*Err... this is one of the things of which I do not know.... it!*'])
-        await client.send_message(message.channel, msg)
-
-    elif 'bhat' in message.content.lower():
-        msg = random.choice([
-        '*Did somebody say my name?*',
-        '*Hello my studnets!*',
-        '*HERE I AM!*',
-        '*I have arrived!*',
-        '*I do believe {AUTHOR} rang?*'.format(AUTHOR = AUTHOR),
-        '*Hello, {AUTHOR}!*'.format(AUTHOR = AUTHOR),
-        '*Yes?*',
-        '*Err...*'])
         await client.send_message(message.channel, msg)
 
 @client.event
