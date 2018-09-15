@@ -67,7 +67,7 @@ async def on_message(message):
     else:
         AUTHOR = str(message.author)[:-5]
 
-    if message.content.startswith('!bhat roll'):
+    if message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
@@ -92,7 +92,7 @@ async def on_message(message):
 Below is a list of commands that I may be doing them!*
 
     - !bhat quote *[I can tell you something juicy!]*
-    - !bhat roll *[I enjoy giving out my advices for you!]*
+    - !bhat 8ball *[I enjoy giving out my advices for you!]*
     - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*
     - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*
     - !bhat hello *[Say hi! Don't be afraid!]*'''
