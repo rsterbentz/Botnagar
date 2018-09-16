@@ -52,13 +52,12 @@ BetTypes = {
 }
 
 
-players = {}
+Players = []
 
 class Bet:
     def __init__(self, type, amt):
         self.type = type
         self.amt = amt
-
 
 class Player:
     def __init__(self, bank, name):
@@ -79,3 +78,6 @@ class Player:
         for b in self.bets:
             self.bank = self.bank + b.amt
         self.bets = []
+
+def joinGame(playername): # playername will be string
+    Players.append(Player(name = playername, bank = 1000))

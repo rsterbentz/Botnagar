@@ -13,6 +13,9 @@ from Data import *
 # n1, n2, n3, n4, n5, target
 import Krypto
 
+# 
+import Craps
+
 # Beta switches to beta Botnagar
 BETA = False
 if BETA:
