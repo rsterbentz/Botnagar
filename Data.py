@@ -3,7 +3,6 @@ users = {
 'Jumping Dog':'Etin Window',
 'Renskay':'Etin Spyder',
 'Tovar':'Rodger',
-'yolomaster':'Garry',
 'Desk':':b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:',
 'tuxy':':b: oston'
 }
@@ -94,7 +93,7 @@ PrimeScore = {
 'Etin Window':0,
 'Etin Spyder':0,
 'Rodger':0,
-'Garry':0,
+':b: arry':0,
 ':b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:':0,
 ':b: oston':0
 }

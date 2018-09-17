@@ -13,7 +13,8 @@ from Data import *
 # n1, n2, n3, n4, n5, target
 import Krypto
 
-# 
+# Used for !bhat craps
+# Still in development
 import Craps
 
 # Beta switches to beta Botnagar
@@ -33,18 +34,24 @@ def IsPrime(n):
             m=m-1
     return p
 
+
+# Roll 2 dice at random - used for !bhat roll
 def rolldice():
     a=random.choice([1,2,3,4,5,6])
     b=random.choice([1,2,3,4,5,6])
 
     # Build framework for dice
-    msg = '''```   _________       _________
- /________ /|     |\ ________\\
-|         | |     | |         |
-|  {a1}   {a5}  | |     | |  {b1}   {b5}  |
-|  {a2} {a4} {a6}  | |     | |  {b2} {b4} {b6}  |
-|  {a3}   {a7}  | |     | |  {b3}   {b7}  |
-|_________|/       \|_________|```'''
+    msg = (
+    '```'
+    '\n   _________       _________'
+    '\n /________ /|     |\ ________\\'
+    '\n|         | |     | |         |'
+    '\n|  {a1}   {a5}  | |     | |  {b1}   {b5}  |'
+    '\n|  {a2} {a4} {a6}  | |     | |  {b2} {b4} {b6}  |'
+    '\n|  {a3}   {a7}  | |     | |  {b3}   {b7}  |'
+    '\n|_________|/       \|_________|'
+    '```'
+    )
 
     # Create determine which pip structure to use
     pips = {
@@ -100,10 +107,12 @@ async def on_message(message):
     elif BETA == False and str(message.channel) != 'botnagar-fanfic':
         return
 
+    # Bhat 8ball roller
     elif message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
+    # Bhat random quote
     elif message.content.startswith('!bhat quote'):
         randcomposite = random.randint(3, 100)
         while IsPrime(randcomposite):
@@ -111,33 +120,37 @@ async def on_message(message):
         msg = random.choice(quotes).format(AUTHOR = AUTHOR, randcomposite = randcomposite) # random.choice(quotes) returns a string,
         await client.send_message(message.channel, msg)     # so then .format(AUTHOR = AUTHOR) replaces the {} in the string
 
+    # bhat hello command
     elif message.content.startswith('!bhat hello'):
         msg = '*Hello, {AUTHOR}!*'.format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
-    elif message.content.startswith('!bhat roll'): # working out the details, won't look this messy for long.
+    # Bhat roll 2 dice
+    elif message.content.startswith('!bhat roll'):
         msg = rolldice()
         await client.send_message(message.channel, msg)
 
+    # Bhat gives info on commands
     elif message.content.startswith('!bhat info'):
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
         n1 = random.randint(1, 99)
         n2 = random.randint(0, 9)
         n3 = random.randint(0, 9)
         n4 = random.randint(1, 99)
-        msg = '''*Hello, {AUTHOR}! I am your tenured virtual professor, Botnagar! (ver {n1}.{n2}.{n3}:{n4})
-Below is a list of commands that I may be doing them!*
-
-    - !bhat quote *[I can tell you something juicy!]*
-    - !bhat 8ball *[I enjoy giving out my advices for you!]*
-    - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*
-    - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*
-    - !bhat hello *[Say hi! Don't be afraid!]*
-    - !bhat roll *[Roll some number cubes! How fun!]*
-    - !bhat krypto *[Maybe you can't solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'''
+        msg = ('*Hello, {AUTHOR}! I am your tenured virtual professor, Botnagar! (ver {n1}.{n2}.{n3}:{n4})'
+        '\nBelow is a list of commands that I may be doing them!*'
+        '\n'
+        '\n    - !bhat quote *[I can tell you something juicy!]*'
+        '\n    - !bhat 8ball *[I enjoy giving out my advices for you!]*'
+        '\n    - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*'
+        '\n    - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*'
+        '\n    - !bhat hello *[Say hi! Don\'t be afraid!]*'
+        '\n    - !bhat roll *[Roll some number cubes! How fun!]*'
+        '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3 , n4 =n4)
         await client.send_message(message.channel, msg)
 
+    # Bhat gives the current primes
     elif message.content.startswith('!bhat primescore'):
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
         response1 = random.choice([
@@ -164,6 +177,7 @@ Below is a list of commands that I may be doing them!*
         msg = msg.format(MaxPlayer = MaxPlayer)
         await client.send_message(message.channel, msg)
 
+    # Bhat gives you a prime and adds to primescore
     elif message.content.startswith('!bhat prime'):
         prime = 2
         while True:
@@ -206,6 +220,7 @@ Below is a list of commands that I may be doing them!*
         msg = msg.format(AUTHOR = AUTHOR, final = final, MaxPlayer = MaxPlayer, MaxPrime = MaxPrime)
         await client.send_message(message.channel, msg)
 
+    # Bhat krypto solver
     elif message.content.startswith('!bhat krypto'):
         s = str(message.content)[12:]
         Solution = Krypto.Main(s)
@@ -224,6 +239,11 @@ Below is a list of commands that I may be doing them!*
             msg = msg + '```' + Solution + '```'
             await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
 
+    # # Bhat craps commands
+    # elif messag.content.startswith('!bhat craps'):
+    #
+
+    # Bhat if nothing else works
     elif message.content.startswith('!bhat'):
         msg = random.choice([
         '*So... err...*',
