@@ -147,7 +147,7 @@ async def on_message(message):
         '\n    - !bhat hello *[Say hi! Don\'t be afraid!]*'
         '\n    - !bhat roll *[Roll some number cubes! How fun!]*'
         '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
-        msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3 , n4 =n4)
+        msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3, n4 =n4)
         await client.send_message(message.channel, msg)
 
     # Bhat gives the current primes
