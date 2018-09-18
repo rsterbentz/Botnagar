@@ -4,7 +4,8 @@ users = {
 'Renskay':'Etin Spyder',
 'Tovar':'Rodger',
 'Desk':':b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:',
-'tuxy':':b: oston'
+'tuxy':':b: oston',
+'yolomaster': ':b: arry'
 }
 
 quotes = [
