@@ -114,7 +114,7 @@ async def on_message(message):
         # Convert Benford data back into string
         s = ''
         for i in range(10):
-            s = '{}:{}\n'.format(i, BenfordData[i])
+            s = s + '{}:{}\n'.format(i, BenfordData[i])
 
         # Save data back to Benford.dat
         BenfordFile = open('Benford.dat', 'w')
