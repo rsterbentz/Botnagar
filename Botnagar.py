@@ -86,7 +86,7 @@ async def on_message(message):
         AUTHOR = str(message.author)[:-5]
 
     # Check of benford's law
-    if str(message.channel) == 'math':
+    if str(message.channel) == 'math-fanfic':
 
         # try to open the file. If not, build file.
         try:
