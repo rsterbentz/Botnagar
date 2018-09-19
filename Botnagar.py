@@ -86,7 +86,7 @@ async def on_message(message):
         AUTHOR = str(message.author)[:-5]
 
     # Check of benford's law
-    elif str(message.channel) == 'math':
+    if str(message.channel) == 'math':
 
         # try to open the file. If not, build file.
         try:
@@ -123,7 +123,7 @@ async def on_message(message):
 
 
     # Bhat can interject in any channel
-    if 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
+    elif 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
         '*Did somebody say my name?*',
         '*Hello my studnets!*',
