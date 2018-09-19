@@ -85,6 +85,42 @@ async def on_message(message):
     else:
         AUTHOR = str(message.author)[:-5]
 
+    # Check of benford's law
+    elif str(message.channel) == 'math':
+
+        # try to open the file. If not, build file.
+        try:
+            BenfordFile = open('Benford.dat', 'r')
+
+            # Take data from file and transfer to list
+            RawData = BenfordFile.readlines()
+            BenfordFile.close()
+        except:
+            BenfordFile = open('Benford.dat', 'w')
+            BenfordFile.write('0:0\n1:0\n2:0\n3:0\n4:0\n5:0\n6:0\n7:0\n8:0\n9:0\n')
+            BenfordFile.close()
+
+        # Take raw data and turn into list
+        BenfordData = []
+        for x in RawData:
+            s = str(x)[2:]
+            BenfordData.append(int(s))
+
+        # Look for integer i in message, add count to BenfordData
+        for i in range(10):
+            count = message.content.count(srt(i))
+            BenfordData[i] = BenfordData[i] + count
+
+        # Convert Benford data back into string
+        s = ''
+        for i in range(10):
+            s = s + str(i) + ':' + BenfordData[i] + '\n'
+
+        # Save data back to Benford.dat
+        BenfordFile = open('Benford.dat', 'w')
+        BenfordFile.write(s)
+        BenfordFile.close()
+
 
     # Bhat can interject in any channel
     if 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
@@ -241,11 +277,6 @@ async def on_message(message):
             msg = msg + '```' + Solution + '```'
             await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
 
-    # # Bhat craps commands
-    # elif messag.content.startswith('!bhat craps'):
-    #
-
-    # Bhat if nothing else works
     elif message.content.startswith('!bhat'):
         msg = random.choice([
         '*So... err...*',

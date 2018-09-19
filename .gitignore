@@ -3,6 +3,6 @@ Tokens.py
 # Botnagar and Botnagar_BETA
 
 *.dat
-# Might store data (primescore) as .dat files
+# Might store data (eg. primescore) as .dat file
 
 __pycache__
