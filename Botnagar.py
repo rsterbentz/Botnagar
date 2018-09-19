@@ -108,7 +108,7 @@ async def on_message(message):
 
         # Look for integer i in message, add count to BenfordData
         for i in range(10):
-            count = message.content.count(srt(i))
+            count = message.content.count(str(i))
             BenfordData[i] = BenfordData[i] + count
 
         # Convert Benford data back into string
