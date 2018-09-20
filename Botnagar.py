@@ -85,7 +85,6 @@ async def on_message(message):
     else:
         AUTHOR = str(message.author)[:-5]
 
-    # Currently not working
     # Check of benford's law
     if str(message.channel) == 'math-fanfic':
 
