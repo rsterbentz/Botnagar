@@ -24,6 +24,9 @@ if BETA:
 else:
     TOKEN = Tokens.RELEASE
 
+def containsNumbers(s):
+    return any(character.isdigit() for character in s)
+
 def IsPrime(n):
     m=int(n**0.5)
     p=True
@@ -85,10 +88,11 @@ async def on_message(message):
     else:
         AUTHOR = str(message.author)[:-5]
 
-    # Check of benford's law
-    if str(message.channel) == 'math-fanfic':
+    # Benford's Law code
+    # Check if string contains numbers
+    if containsNumbers( str(message.channel) ):
 
-        # try to open the file. If not, build file.
+        # Try to open the file. If not, build file.
         try:
             BenfordFile = open('Benford.dat', 'r')
 
