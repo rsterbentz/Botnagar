@@ -37,6 +37,47 @@ def IsPrime(n):
             m=m-1
     return p
 
+# Counts the number of numbers in msg
+# and saves data to Benford.dat
+def BenfordCount(msg):
+
+    # Benford's Law code
+    # Check if string contains numbers
+    if containsNumbers( msg ):
+
+        # Try to open the file. If not, build file.
+        try:
+            BenfordFile = open('Benford.dat', 'r')
+
+            # Take data from file and transfer to list
+            RawData = BenfordFile.readlines()
+            BenfordFile.close()
+        except:
+            BenfordFile = open('Benford.dat', 'w')
+            BenfordFile.write('0:0\n1:0\n2:0\n3:0\n4:0\n5:0\n6:0\n7:0\n8:0\n9:0\n')
+            BenfordFile.close()
+            RawData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        # Take raw data and turn into list
+        BenfordData = []
+        for x in RawData:
+            s = str(x)[2:]
+            BenfordData.append(int(s))
+
+        # Look for integer i in message, add count to BenfordData
+        for i in range(10):
+            count = msg.count(str(i))
+            BenfordData[i] = BenfordData[i] + count
+
+        # Convert Benford data back into string
+        s = ''
+        for i in range(10):
+            s = s + '{}:{}\n'.format(i, BenfordData[i])
+
+        # Save data back to Benford.dat
+        BenfordFile = open('Benford.dat', 'w')
+        BenfordFile.write(s)
+        BenfordFile.close()
 
 # Roll 2 dice at random - used for !bhat roll
 def rolldice():
@@ -90,44 +131,11 @@ async def on_message(message):
 
     # Benford's Law code
     # Check if string contains numbers
-    if containsNumbers( str(message.channel) ):
-
-        # Try to open the file. If not, build file.
-        try:
-            BenfordFile = open('Benford.dat', 'r')
-
-            # Take data from file and transfer to list
-            RawData = BenfordFile.readlines()
-            BenfordFile.close()
-        except:
-            BenfordFile = open('Benford.dat', 'w')
-            BenfordFile.write('0:0\n1:0\n2:0\n3:0\n4:0\n5:0\n6:0\n7:0\n8:0\n9:0\n')
-            BenfordFile.close()
-
-        # Take raw data and turn into list
-        BenfordData = []
-        for x in RawData:
-            s = str(x)[2:]
-            BenfordData.append(int(s))
-
-        # Look for integer i in message, add count to BenfordData
-        for i in range(10):
-            count = message.content.count(str(i))
-            BenfordData[i] = BenfordData[i] + count
-
-        # Convert Benford data back into string
-        s = ''
-        for i in range(10):
-            s = s + '{}:{}\n'.format(i, BenfordData[i])
-
-        # Save data back to Benford.dat
-        BenfordFile = open('Benford.dat', 'w')
-        BenfordFile.write(s)
-        BenfordFile.close()
-
+    if containsNumbers( str(message.content) ):
+        BenfordCount( str(message.content) )
 
     # Bhat can interject in any channel
-    elif 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
+    if 'bhat' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
         '*Did somebody say my name?*',
         '*Hello my studnets!*',
