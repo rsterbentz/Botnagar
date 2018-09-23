@@ -41,10 +41,6 @@ def IsPrime(n):
 # and saves data to Benford.dat
 def BenfordCount(msg):
 
-    # Benford's Law code
-    # Check if string contains numbers
-    if containsNumbers( msg ):
-
         # Try to open the file. If not, build file.
         try:
             BenfordFile = open('Benford.dat', 'r')
@@ -56,13 +52,19 @@ def BenfordCount(msg):
             BenfordFile = open('Benford.dat', 'w')
             BenfordFile.write('0:0\n1:0\n2:0\n3:0\n4:0\n5:0\n6:0\n7:0\n8:0\n9:0\n')
             BenfordFile.close()
-            RawData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+            # Take data from file and transfer to list
+            BenfordFile = open('Benford.dat', 'r')
+            RawData = BenfordFile.readlines()
+            BenfordFile.close()
 
         # Take raw data and turn into list
         BenfordData = []
+        print(RawData)
         for x in RawData:
             s = str(x)[2:]
             BenfordData.append(int(s))
+        print(BenfordData)
 
         # Look for integer i in message, add count to BenfordData
         for i in range(10):
@@ -78,6 +80,7 @@ def BenfordCount(msg):
         BenfordFile = open('Benford.dat', 'w')
         BenfordFile.write(s)
         BenfordFile.close()
+
 
 # Roll 2 dice at random - used for !bhat roll
 def rolldice():
