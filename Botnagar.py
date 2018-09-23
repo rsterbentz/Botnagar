@@ -60,11 +60,9 @@ def BenfordCount(msg):
 
         # Take raw data and turn into list
         BenfordData = []
-        print(RawData)
         for x in RawData:
             s = str(x)[2:]
             BenfordData.append(int(s))
-        print(BenfordData)
 
         # Look for integer i in message, add count to BenfordData
         for i in range(10):
