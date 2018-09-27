@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Must be run in python 3.4 - 3.6
 
 import discord, random
