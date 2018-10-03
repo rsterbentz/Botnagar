@@ -74,7 +74,7 @@ quotes = [
 '*Have you ever taken your caution and thrown it at the wind, {AUTHOR}?*',
 '*You know, {AUTHOR}, it takes two to play the bongos!*',
 '*You know, they say, {AUTHOR}, don\'t cover a book after you judge it!*',
-'*This is just the calm after the storm, {AUTHOR}.*'
+'*This is just the calm after the storm, {AUTHOR}.*',
 '*You know, {AUTHOR}, you really threw me under the boat there.*'
 ]
 
