@@ -279,7 +279,7 @@ async def on_message(message):
 
         if Solution == False:
             msg = random.choice([
-            '*I\'m awfully sorry, {AUTHOR}, I couldn\'t find a soltuion*',
+            '*I\'m awfully sorry, {AUTHOR}, I couldn\'t find a solution*',
             '*Err... I guess this one of the ones that cannot be of the solving it!*'
             ])
             await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
