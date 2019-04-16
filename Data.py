@@ -5,7 +5,7 @@ users = {
 'Tovar':'Rodger',
 'Desk':':b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:',
 'tuxy':':b: oston',
-'yolomaster': ':b: arry'
+'Prolomaster': ':b: arry'
 }
 
 quotes = [
@@ -86,7 +86,9 @@ ball = [
 '*{AUTHOR}, you are of the knowing of it!*',
 '*Ask me later, {AUTHOR}...*',
 '*You know... There ARE people who think yes!*',
-'*{AUTHOR}, you may be doing it!*'
+'*{AUTHOR}, you may be doing it!*',
+'*You know {AUTHOR}, I think, err.. you can be the one!*',
+'*Hrm, I do not believe that would be the case yes!*'
 ]
 
 PrimeScore = {
@@ -96,5 +98,4 @@ PrimeScore = {
 'Rodger':0,
 ':b: arry':0,
 ':b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:':0,
-':b: oston':0
 }
