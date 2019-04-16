@@ -148,7 +148,25 @@ async def on_message(message):
         '*Yes?*',
         '*Err...*'])
         await client.send_message(message.channel, msg)
+        
+    # Bhat other interjections
+    if 'history' in message.content.lower() and not message.content.startswith('!bhat'):
+        msg = random.choice([
+        '*I remember when I taught the History of...err.*'])
+        await client.send_message(message.channel, msg)
 
+    # Bhat other interjections
+    if 'tenure' in message.content.lower() and not message.content.startswith('!bhat'):
+        msg = random.choice([
+        '*Did you know I have DENUREl??*'])
+        await client.send_message(message.channel, msg)
+
+    # Bhat other interjections
+    if 'book' in message.content.lower() and not message.content.startswith('!bhat'):
+        msg = random.choice([
+        '*You know, I have written many books..yes..*'])
+        await client.send_message(message.channel, msg)
+        
     # Beta build only posts in beta-bhatnagar
     elif BETA == True and str(message.channel) != 'beta-botnagar-fanfic':
         return
