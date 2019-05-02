@@ -252,7 +252,7 @@ async def on_message(message):
         msg = msg.format(MaxPlayer = MaxPlayer)
         await client.send_message(message.channel, msg)
     
-    # Bhat sees if a number is prime
+    # Bhat checks if a number is prime
     elif message.content.startswith('!bhat primecheck'):
         l = message.content.split()
         if IsPrime(int(l[2])):
@@ -265,8 +265,8 @@ async def on_message(message):
                 '*{AUTHOR}, give me 7 to 9 nuggets on why {n} is not prime..*',
                 '*Err, {n} may be of the primes, but it is not!*'
             ])
-    msg = msg.format(AUTHOR = AUTHOR, n = int(l[2]))
-    await client.send_message(message.channel, msg)
+        msg = msg.format(AUTHOR = AUTHOR, n = int(l[2]))
+        await client.send_message(message.channel, msg)
     
     # Bhat gives you a prime and adds to primescore
     elif message.content.startswith('!bhat prime'):
