@@ -251,7 +251,23 @@ async def on_message(message):
         msg = response1 + response2 + response3
         msg = msg.format(MaxPlayer = MaxPlayer)
         await client.send_message(message.channel, msg)
-
+    
+    # Bhat sees if a number is prime
+    elif message.content.startswith('!bhat primecheck'):
+        l = message.content.split()
+        if IsPrime(int(l[2])):
+            msg = random.choice([
+                '*I do believe {n} is :b:rime!!*',
+                '*Did you know, {AUTHOR}, that {n} is the largest :b:rime?*'
+            ])
+        else:
+            msg = random.choice([
+                '*{AUTHOR}, give me 7 to 9 nuggets on why {n} is not prime..*',
+                '*Err, {n} may be of the primes, but it is not!*'
+            ])
+    msg = msg.format(AUTHOR = AUTHOR, n = int(l[2]))
+    await client.send_message(message.channel, msg)
+    
     # Bhat gives you a prime and adds to primescore
     elif message.content.startswith('!bhat prime'):
         prime = 2
