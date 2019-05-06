@@ -38,6 +38,16 @@ def IsPrime(n):
             m=m-1
     return p
 
+def factor(n):
+    factors = set()
+    for i in range(1, int(n**.5)+1):
+        if n % i == 0:
+            factors.add(i)
+            factors.add(n//i)
+    l = list(factors)
+    l.sort()
+    return l
+
 # Counts the number of numbers in msg
 # and saves data to Benford.dat
 def BenfordCount(msg):
@@ -262,11 +272,13 @@ async def on_message(message):
                 '*Did you know, {AUTHOR}, that {n} is the largest :b:rime?*'
             ])
         else:
+            factors = factor(n)
             msg = random.choice([
-                '*{AUTHOR}, give me 7 to 9 nuggets on why {n} is not prime..*',
-                '*Err, {n} may be of the primes, but it is not!*'
+                '*{AUTHOR}, give me 7 to 9 nuggets on why {n} is not prime.. These ARE the factors!*',
+                '*Err, {n} may be of the primes, but it is not! It has these factors!*'
             ])
         msg = msg.format(AUTHOR = AUTHOR, n = n)
+        msg = msg + '\n' + str(factors)
         await client.send_message(message.channel, msg)
 
     # Bhat gives you a prime and adds to primescore
