@@ -281,7 +281,7 @@ async def on_message(message):
                 prime = 3
             else:
                 prime = prime+2
-                if random.random() <= .01;
+                if random.random() <= .01:
                     prime = prime + 1
 
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
