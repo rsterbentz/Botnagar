@@ -272,13 +272,12 @@ async def on_message(message):
                 '*Did you know, {AUTHOR}, that {n} is the largest :b:rime?*'
             ])
         else:
-            factors = factor(n)
             msg = random.choice([
                 '*{AUTHOR}, give me 7 to 9 nuggets on why {n} is not prime.. These ARE the factors!*',
                 '*Err, {n} may be of the primes, but it is not! It has these factors!*'
             ])
         msg = msg.format(AUTHOR = AUTHOR, n = n)
-        msg = msg + '\n' + str(factors)
+        msg = msg + '\n' + str(factor(n))
         await client.send_message(message.channel, msg)
 
     # Bhat gives you a prime and adds to primescore
