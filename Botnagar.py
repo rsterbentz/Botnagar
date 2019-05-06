@@ -276,13 +276,13 @@ async def on_message(message):
             if IsPrime(prime) == True:
                 if random.random() <= .05:
                     final = prime
+                    if random.random() <= .1:
+                        final = final + 2
                     break
             if prime == 2:
                 prime = 3
             else:
                 prime = prime+2
-                if random.random() <= .01:
-                    prime = prime + 1
 
         MaxPlayer = max(PrimeScore, key = PrimeScore.get)
         MaxPrime = PrimeScore[MaxPlayer]
