@@ -3,6 +3,8 @@ Discord bot based on Satish Bhatnagar
 
 Commands:
 
+!bhat 8ball [I could speak you the future!]
+
 !bhat quote [I can tell you something juicy!]
 
 !bhat roll [I enjoy giving out my advices for you!]
@@ -10,6 +12,8 @@ Commands:
 !bhat prime [I'll give you a prime. Let's see if it's a big one!]
 
 !bhat primescore [Who's winning?]
+
+!bhat primecheck [Could this be prime??]
 
 !bhat hello [Say hi! Don't be afraid!]
 
