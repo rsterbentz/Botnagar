@@ -163,6 +163,7 @@ async def on_message(message):
     if 'history' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
         '*I remember when I taught the history of...err...*',
+        '*Try throwing your dart at this one!* https://www.amazon.com/Darts-History-Mathematics-SATISH-BHATNAGAR-ebook/dp/B0792VV5JQ/ref=sr_1_2?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-2&text=Satish++C.+Bhatnagar',
         '*I once taught a, err, history class..*',
         '*HISTORY is my passion, {AUTHOR}!*'.format(AUTHOR = AUTHOR)])
         await client.send_message(message.channel, msg)
@@ -178,8 +179,16 @@ async def on_message(message):
     if 'book' in message.content.lower() and not message.content.startswith('!bhat'):
         msg = random.choice([
         '*You know, I have written many books..yes..*',
+        '*I wrote this one many years ago!* https://www.amazon.com/PLUMS-PEACHES-EDUCATION-Satish-Bhatnagar/dp/1490770712',
+        '*Have a look at my Mama Ji!* https://www.amazon.com/Swami-Deekshanand-Saraswati-My-Mama-ebook/dp/B0792XXDLM/ref=sr_1_1?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-1&text=Satish++C.+Bhatnagar',
+        '*Matherticles! Yes!* https://www.amazon.com/Converging-Matherticles-Mathematical-Reflections-II/dp/1490757309/ref=sr_1_5?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-5&text=Satish++C.+Bhatnagar',
+        '*You know, epsilons and deltas aren\'t just used for calculus... err...* https://www.amazon.com/Epsilons-Deltas-Life-Everyday-Stories-ebook/dp/B07957WRZ3/ref=sr_1_6?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-6&text=Satish++C.+Bhatnagar',
+        '*They say education is like a rare fruit...* https://www.amazon.com/Plums-Peaches-Pears-Education-I-ebook/dp/B0793TH8MY/ref=sr_1_7?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-7&text=Satish++C.+Bhatnagar',
+        '*You may be reading up on my religion!* https://www.amazon.com/My-Hindu-Faith-Periscope-I-ebook/dp/B0792X25DY/ref=sr_1_8?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-8&text=Satish++C.+Bhatnagar',
+        '*This is a good book on where I am from! Yes!* https://www.amazon.com/Via-Bhatinda-Braid-Reflected-Memoirs/dp/1466984678/ref=sr_1_3?qid=1558167305&refinements=p_27%3ASatish++C.+Bhatnagar&s=books&sr=1-3&text=Satish++C.+Bhatnagar',
         '*You know, there are many DARTS in my book, yes!*',
-        '*Have you BHAT my book yet, {AUTHOR}??*'.format(AUTHOR = AUTHOR)])
+        '*Have you BHAT my book yet, {AUTHOR}??*'.format(AUTHOR = AUTHOR)
+        ])
         await client.send_message(message.channel, msg)
 
     # standard build only posts in bhatnagar
@@ -191,16 +200,21 @@ async def on_message(message):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
-    # Bhat random quote
-    elif message.content.startswith('!bhat quote'):
-        randcomposite = random.randint(3, 100)
-        while IsPrime(randcomposite):
-            randcomposite = random.randint(3, 100)
-        msg = random.choice(quotes).format(AUTHOR = AUTHOR, randcomposite = randcomposite) # random.choice(quotes) returns a string,
-        await client.send_message(message.channel, msg)     # so then .format(AUTHOR = AUTHOR) replaces the {} in the string
-
+    # Add quotes to Bhat's list
     elif message.content.startswith('!bhat addquote'):
-
+        s = str(message.content)[15:]
+        if s[0] != '*':
+            s = '*' + s
+        if s[-1] != '*':
+            s = s + '*'
+        quotesFile = open('Quotes.dat', 'a')
+        quotesFile.write('\n' + s)
+        quotesFile.close()
+        msg = random.choice([
+        '*You know, I have placed it in my MIND!*',
+        '*I will be of the thinking it!*',
+        '*Err, I will memory this one, yes!*'
+        ])
         await client.send_message(message.channel, msg)
 
     # New Bhat random quote
@@ -241,8 +255,10 @@ async def on_message(message):
         '\n    - !bhat prime *[I\'ll give you a prime. Let\'s see if it\'s a big one!]*'
         '\n    - !bhat primescore *[Who\'s winning? Right now it\'s {MaxPlayer}!]*'
         '\n    - !bhat hello *[Say hi! Don\'t be afraid!]*'
+        '\n    - !bhat bday *[How old am I? I\'ll give you my birth year!]*'
         '\n    - !bhat roll *[Roll some number cubes! How fun!]*'
         '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
+        '\n    - !bhat factor *[I can simplify... err... some trinomials. Give me a, b, and c!]*'
         )
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3, n4 = n4)
         await client.send_message(message.channel, msg)
@@ -492,13 +508,15 @@ async def on_message(message):
     # Bhat's birthday year
 
     elif message.content.startswith('!bhat bday'):
-        if(random.random()<.01):
+        if(random.random()<.05):
             century = 17
+        elif(random.random()<.05):
+            century = 20
+        elif(random.random()<.20):
+            century = 18
         else:
-            if(random.random()<.1):
-                century = 18
-            else:
-                century = 19
+            century = 19
+
         year = int((100*random.random()))
         if(year < 10):
             bday = str(century)+str(0)+str(year)
