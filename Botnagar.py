@@ -18,7 +18,7 @@ import Krypto
 # Still in development
 import Craps
 
-TOKEN = Tokens.BETA
+TOKEN = Tokens.RELEASE
 
 def containsNumbers(s):
     return any(character.isdigit() for character in s)
