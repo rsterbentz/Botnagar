@@ -18,12 +18,7 @@ import Krypto
 # Still in development
 import Craps
 
-# Beta switches to beta Botnagar
-BETA = False
-if BETA:
-    TOKEN = Tokens.BETA
-else:
-    TOKEN = Tokens.RELEASE
+TOKEN = Tokens.BETA
 
 def containsNumbers(s):
     return any(character.isdigit() for character in s)
