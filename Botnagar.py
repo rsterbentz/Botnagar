@@ -187,7 +187,7 @@ async def on_message(message):
         return
 
     # standard build only posts in bhatnagar
-    elif BETA == False and str(message.channel) != 'botnagar-fanfic':
+    elif BETA == False and str(message.channel) != 'botnagar':
         return
 
     # Bhat 8ball roller
