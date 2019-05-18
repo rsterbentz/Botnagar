@@ -199,13 +199,20 @@ async def on_message(message):
         msg = random.choice(quotes).format(AUTHOR = AUTHOR, randcomposite = randcomposite) # random.choice(quotes) returns a string,
         await client.send_message(message.channel, msg)     # so then .format(AUTHOR = AUTHOR) replaces the {} in the string
 
+    elif message.content.startswith('!bhat addquote'):
+
+        await client.send_message(message.channel, msg)
+
     # New Bhat random quote
     elif message.content.startswith('!bhat quote'):
         randcomposite = random.randint(3, 100)
         while IsPrime(randcomposite):
             randcomposite = random.randint(3, 100)
         quotesFile = open('Quotes.dat', 'r')
-
+        s = quotesFile.read()
+        quotesFile.close()
+        quotesList = s.split('\n')
+        msg = random.choice(quotesList).format(AUTHOR = AUTHOR, randcomposite = randcomposite)
         await client.send_message(message.channel, msg)
 
     # bhat hello command
@@ -480,6 +487,31 @@ async def on_message(message):
             else:
                 #msg = '*This is... err... something that I haven\'t learned yet...*\n=pup factor {a}x^2+{b}x+{c}'.format(a = a, b = b, c = c)
                 msg = '=pup factor {a}x^2+{b}x+{c}'.format(a = a, b = b, c = c)
+        await client.send_message(message.channel, msg)
+
+    # Bhat's birthday year
+
+    elif message.content.startswith('!bhat bday'):
+        if(random.random()<.01):
+            century = 17
+        else:
+            if(random.random()<.1):
+                century = 18
+            else:
+                century = 19
+        year = int((100*random.random()))
+        if(year < 10):
+            bday = str(century)+str(0)+str(year)
+        else:
+            bday = str(century)+str(year)
+        msg = random.choice([
+        '*Did you know that I was born in the year of '+bday+'?*',
+        '*Yes, this does remind me of my time back in '+bday+'!*',
+        '*You know, when I was a little girl in '+bday+'... err...*',
+        '*I was born in '+bday+'! What a wonderful year this is!*'
+        ])
+        if IsPrime(year):
+            msg = msg + '\n*...And did you know that '+bday+' is :b:rime??*'
         await client.send_message(message.channel, msg)
 
     # Wrong command check
