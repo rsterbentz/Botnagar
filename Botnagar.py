@@ -515,7 +515,10 @@ async def on_message(message):
             century = 18
         else:
             century = 19
-        year = int((100*random.random()))
+        if(century==20):
+            year = int((100*random.random())/5)
+        else:
+            year = int((100*random.random()))
         if(year < 10):
             bday = str(century)+str(0)+str(year)
         else:
