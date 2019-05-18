@@ -178,7 +178,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     # standard build only posts in bhatnagar
-    elif BETA == False and (str(message.channel) != 'botnagar' or str(message.channel) != 'botnagar-workshop'):
+    elif (str(message.channel) != 'botnagar' or str(message.channel) != 'botnagar-workshop'):
         return
 
     # Bhat 8ball roller
