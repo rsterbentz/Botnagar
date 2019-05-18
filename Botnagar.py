@@ -182,12 +182,8 @@ async def on_message(message):
         '*Have you BHAT my book yet, {AUTHOR}??*'.format(AUTHOR = AUTHOR)])
         await client.send_message(message.channel, msg)
 
-    # Beta build only posts in beta-bhatnagar
-    elif BETA == True and str(message.channel) != 'beta-botnagar-fanfic':
-        return
-
     # standard build only posts in bhatnagar
-    elif BETA == False and str(message.channel) != 'botnagar':
+    elif BETA == False and (str(message.channel) != 'botnagar' or str(message.channel) != 'botnagar-workshop'):
         return
 
     # Bhat 8ball roller
