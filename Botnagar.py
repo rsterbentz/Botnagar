@@ -33,6 +33,11 @@ def IsPrime(n):
             m=m-1
     return p
 
+def gcf(x,y):
+  while(y):
+      x,y = y,x%y
+  return x
+
 def factor(n):
     factors = set()
     for i in range(1, int(n**.5)+1):
@@ -178,7 +183,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     # standard build only posts in bhatnagar
-    elif str(message.channel) != 'botnagar' or str(message.channel) != 'botnagar-workshop':
+    elif str(message.channel) != 'botnagar' and str(message.channel) != 'botnagar-workshop':
         return
 
     # Bhat 8ball roller
@@ -193,6 +198,15 @@ async def on_message(message):
             randcomposite = random.randint(3, 100)
         msg = random.choice(quotes).format(AUTHOR = AUTHOR, randcomposite = randcomposite) # random.choice(quotes) returns a string,
         await client.send_message(message.channel, msg)     # so then .format(AUTHOR = AUTHOR) replaces the {} in the string
+
+    # New Bhat random quote
+    elif message.content.startswith('!bhat quote'):
+        randcomposite = random.randint(3, 100)
+        while IsPrime(randcomposite):
+            randcomposite = random.randint(3, 100)
+        quotesFile = open('Quotes.dat', 'r')
+
+        await client.send_message(message.channel, msg)
 
     # bhat hello command
     elif message.content.startswith('!bhat hello'):
@@ -335,6 +349,140 @@ async def on_message(message):
             msg = msg + '```' + Solution + '```'
             await client.send_message(message.channel, msg.format(AUTHOR = AUTHOR))
 
+    # Bhat trinomial factoring
+    elif message.content.startswith('!bhat factor'):
+
+        l = str(message.content).split()
+        [a, b, c] = l[2].split(',')
+        a = int(a)
+        b = int(b)
+        c = int(c)
+
+        bhatknows = True
+        factorable = False
+
+        if(a%1!=0 or b%1!=0 or c%1!=0 or a<0 or b<0 or c<0):
+            msg = random.choice([
+            '*These are not nonnegative integers!*',
+            '*Do you not know what the whole numbers are?*',
+            '*You know, these numbers are difficult to work with... err...*',
+            '*Try some other numbers! Yes!*'
+            ])
+        else:
+            if(a==0 and b==0 and c==0):
+                trinomial = '0'
+                factorable = False
+
+            if(a==0 and b==0 and c!=0):
+                trinomial = str(c)
+                factorable = False
+
+            if(a==0 and b!=0 and c==0):
+                if(b==1):
+                    trinomial = 'x'
+                else:
+                    trinomial = str(b)+'x'
+                factorable = False
+
+            if(a!=0 and b==0 and c==0):
+                if(a==1):
+                    trinomial = 'x'+chr(178)
+                else:
+                    trinomial = str(a)+'x'+chr(178)
+                factorable = False
+
+            if(a==0 and b!=0 and c!=0):
+                if(b==1):
+                    trinomial = 'x+'+str(c)
+                    factorable = False
+                else:
+                    trinomial = str(b)+'x+'+str(c)
+                    if(gcf(b,c)==1):
+                        factorable = False
+                    else:
+                        factorable = True
+                        if(b/gcf(b,c)==1):
+                            solution = str(gcf(b,c))+'(x+'+str(c//gcf(b,c))+')'
+                        else:
+                            solution = str(gcf(b,c))+'('+str(b//gcf(b,c))+'x+'+str(c//gcf(b,c))+')'
+
+            if(a!=0 and b!=0 and c==0):
+                if(a==1):
+                    if(b==1):
+                        trinomial = 'x'+chr(178)+'+x'
+                    else:
+                        trinomial = 'x'+chr(178)+'+'+str(b)+'x'
+                else:
+                    if(b==1):
+                        trinomial = str(a)+'x'+chr(178)+'+x'
+                    else:
+                        trinomial = str(a)+'x'+chr(178)+'+'+str(b)+'x'
+                factorable = True
+                if(gcf(a,b)==1):
+                    if(a==1):
+                        solution = 'x(x+'+str(b)+')'
+                    else:
+                        solution = 'x('+str(a)+'x+'+str(b)+')'
+                else:
+                    if(a/gcf(a,b)==1):
+                        solution = str(gcf(a,b))+'x(x+'+str(b//gcf(a,b))+')'
+                    else:
+                        solution = str(gcf(a,b))+'x('+str(a//gcf(a,b))+'x+'+str(b//gcf(a,b))+')'
+
+            if(a!=0 and b==0 and c!=0):
+                if(a==1):
+                    trinomial = 'x'+chr(178)+'+'+str(c)
+                else:
+                    trinomial = str(a)+'x'+chr(178)+'+'+str(c)
+                if(gcf(a,c)==1):
+                    factorable = False
+                else:
+                    factorable = True
+                    if(a/gcf(a,c)==1):
+                        solution = str(gcf(a,c))+'(x'+chr(178)+'+'+str(c//gcf(a,c))+')'
+                    else:
+                        solution = str(gcf(a,c))+'('+str(a//gcf(a,c))+'x'+chr(178)+'+'+str(c//gcf(a,c))+')'
+
+            if(a!=0 and b!=0 and c!=0):
+                if(a==1):
+                    if(b==1):
+                        trinomial = 'x'+chr(178)+'+x+'+str(c)
+                    else:
+                        trinomial = 'x'+chr(178)+'+'+str(b)+'x+'+str(c)
+                else:
+                    if(b==1):
+                        trinomial = str(a)+'x'+chr(178)+'+x+'+str(c)
+                    else:
+                        trinomial = str(a)+'x'+chr(178)+'+'+str(b)+'x+'+str(c)
+                if(gcf(gcf(a,b),c)==1):
+                    if(a==1):
+                        if(((-b+(b**2-4*a*c)**(1/2))/(2*a))%1==0):
+                            factorable = True
+                            x = -(-b-(b**2-4*a*c)**(1/2))//(2*a)
+                            y = -(-b+(b**2-4*a*c)**(1/2))//(2*a)
+                            solution = '(x+'+str(x)+')(x+'+str(y)+')'
+                        else:
+                            factorable = False
+                    else:
+                        if(((-b+(b**2-4*a*c)**(1/2))//(2*a))%1==0):
+                            bhatknows = False
+                        else:
+                            factorable = False
+                            bhatknows = False
+                else:
+                    bhatknows = False
+
+            if(bhatknows == True):
+                if(factorable == True):
+                    msg = '*The polynomial '+trinomial+' factors into '+solution+'!*'
+                else:
+                    msg = '*The polynomial '+trinomial+' doesn\'t factor!*'
+            else:
+                #msg = '*This is... err... something that I haven\'t learned yet...*\n=pup factor {a}x^2+{b}x+{c}'.format(a = a, b = b, c = c)
+                msg = '=pup factor {a}x^2+{b}x+{c}'.format(a = a, b = b, c = c)
+        await client.send_message(message.channel, msg)
+
+    # Wrong command check
     elif message.content.startswith('!bhat'):
         msg = random.choice([
         '*So... err...*',
