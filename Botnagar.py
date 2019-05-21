@@ -212,7 +212,11 @@ async def on_message(message):
             msg = random.choice([
             '*I do believe the Ethereum is at ${PRICE}!*',
             '*Err, Ethereum might be at ${PRICE}....*',
+<<<<<<< HEAD
             '*Did you know that ${PRICE} is the value of the Ethereums??*',
+=======
+            '*Did you know that ${PRICE} is the value of the Ethereums??*'
+>>>>>>> 4aebd3010eef9d7a60b8c2a3d3d7e4f20926e003
             '*You know, some say that ${PRICE} is what Ethereum is at yes!*'
             ])
             await client.send_message(message.channel, msg.format(PRICE = str(response['ETH']['USD'])))
