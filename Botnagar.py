@@ -14,6 +14,10 @@ from Data import *
 # n1, n2, n3, n4, n5, target
 import Krypto
 
+# Using for internet scraping
+import json
+import aiohttp
+
 # Used for !bhat craps
 # Still in development
 import Craps
@@ -195,6 +199,24 @@ async def on_message(message):
     elif str(message.channel) != 'botnagar' and str(message.channel) != 'botnagar-workshop':
         return
 
+    # Bhat tells us the price of ethereum
+    elif message.content.startswith('!bhat ethprice'):
+        file = open('EthereumAPI.dat', 'r')
+        KEY = file.read()
+        file.close()
+        url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH&tsyms=USD&api_key=' + KEY
+        async with aiohttp.ClientSession() as session:  # Async HTTP request
+            raw_response = await session.get(url)
+            response = await raw_response.text()
+            response = json.loads(response)
+            msg = random.choice([
+            '*I do believe the Ethereum is at ${PRICE}!*',
+            '*Err, Ethereum might be at ${PRICE}....*',
+            '*Did you know that ${PRICE} is the value of the Ethereums??*',
+            '*You know, some say that ${PRICE} is what Ethereum is at yes!*'
+            ])
+            await client.send_message(message.channel, msg.format(PRICE = str(response['ETH']['USD'])))
+
     # Bhat 8ball roller
     elif message.content.startswith('!bhat 8ball'):
         msg = random.choice(ball).format(AUTHOR = AUTHOR)
@@ -257,6 +279,7 @@ async def on_message(message):
         '\n    - !bhat hello *[Say hi! Don\'t be afraid!]*'
         '\n    - !bhat bday *[How old am I? I\'ll give you my birth year!]*'
         '\n    - !bhat roll *[Roll some number cubes! How fun!]*'
+        '\n    - !bhat ethprice *[You know, Ethereum has a price!]*'
         '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
         '\n    - !bhat factor *[I can simplify... err... some trinomials. Give me a, b, and c!]*'
         )
