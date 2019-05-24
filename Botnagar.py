@@ -282,6 +282,7 @@ async def on_message(message):
         '\n    - !bhat ethprice *[You know, Ethereum has a price!]*'
         '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
         '\n    - !bhat factor *[I can simplify... err... some trinomials. Give me a, b, and c!]*'
+        '\n    - !bhat cards *[Tell me how many playing cards you want. I will give them to you at random!]*'
         )
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3, n4 = n4)
         await client.send_message(message.channel, msg)
@@ -555,6 +556,96 @@ async def on_message(message):
         if IsPrime(year):
             msg = msg + '\n*...And did you know that '+bday+' is :b:rime??*'
         await client.send_message(message.channel, msg)
+
+    # Bhat random cards
+
+    elif message.content.startswith('!bhat cards'):
+        string = str(message.content)
+        n = int(string.[2])
+
+        def SelectCards(n, cards):
+            deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
+                    "AH","2H","3H","4H","5H","6H","7H","8H","9H","XH","JH","QH","KH",
+                    "AD","2D","3D","4D","5D","6D","7D","8D","9D","XD","JD","QD","KD",
+                    "AC","2C","3C","4C","5C","6C","7C","8C","9C","XC","JC","QC","KC")
+            i = 0
+            while(i < n):
+                new = False
+                while(new == False):
+                    candidate = random.choice(deck)
+                    if(candidate not in cards):
+                        new = True
+                cards.append(candidate)
+                i = i+1
+
+        def IsTen(card):
+            if(card[0] == "X"):
+                return True
+            else:
+                return False
+
+        def PrintCards(n, cards):
+
+            line1 = "```"
+            i = 0
+            while(i < n):
+                line1 = line1+chr(9556)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9559)+" "
+                i = i + 1
+
+            line2 = str()
+            i = 0
+            while(i < n):
+                line2 = line2+chr(9553)
+                if(IsTen(cards[i][0])):
+                    line2 = line2+"10"
+                else:
+                    line2 = line2+" "+cards[i][0]
+                line2 = line2+"   "+chr(9553)+" "
+                i = i + 1
+
+            line3 = str()
+            i = 0
+            while(i < n):
+                line3 = line3+chr(9553)+"  "
+                if(cards[i][1] == "S"):
+                    line3 = line3+chr(9824)
+                elif(cards[i][1] == "H"):
+                    line3 = line3+chr(9829)
+                elif(cards[i][1] == "D"):
+                    line3 = line3+chr(9830)
+                else:
+                    line3 = line3+chr(9827)
+                line3 = line3+"  "+chr(9553)+" "
+                i = i + 1
+
+            line4 = str()
+            i = 0
+            while(i < n):
+                line4 = line4+chr(9553)+"   "
+                if(IsTen(cards[i][0])):
+                    line4 = line4+"10"
+                else:
+                    line4 = line4+cards[i][0]+" "
+                line4 = line4+chr(9553)+" "
+                i = i + 1
+
+            line5 = str()
+            i = 0
+            while(i < n):
+                line5 = line5+chr(9562)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9565)+" "
+                i = i + 1
+            line5 = line5+"```"
+
+            msg = line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5
+            await client.send_message(message.channel, msg)
+
+        if(n > 10):
+            msg = "*This is just too many of the cards!*"
+            await client.send_message(message.channel, msg)
+        else:
+            cards = list()
+            SelectCards(n, cards)
+            PrintCards(n, cards)
 
     # Wrong command check
     elif message.content.startswith('!bhat'):
