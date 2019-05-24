@@ -561,7 +561,7 @@ async def on_message(message):
 
     elif message.content.startswith('!bhat cards'):
         string = str(message.content)
-        n = int(string.[2])
+        n = int(string[12:])
 
         def SelectCards(n, cards):
             deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
@@ -637,7 +637,7 @@ async def on_message(message):
             line5 = line5+"```"
 
             msg = line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5
-            await client.send_message(message.channel, msg)
+            return msg
 
         if(n > 10):
             msg = "*This is just too many of the cards!*"
@@ -645,7 +645,9 @@ async def on_message(message):
         else:
             cards = list()
             SelectCards(n, cards)
-            PrintCards(n, cards)
+            msg = PrintCards(n, cards)
+            msg = '*Make sure you are not of the using a phone! Err..*\n' + msg
+            await client.send_message(message.channel, msg)
 
     # Wrong command check
     elif message.content.startswith('!bhat'):
