@@ -124,7 +124,7 @@ def SortCards(cards): #orders cards by ascending rank
 
 def IsStraight(cards): #checks to see if hand is a straight
     ranks = SortCards(cards)
-    if(ranks[0] == 10 and ranks[1] == 11 and ranks[2] == 12 and ranks[3] == 13 and ranks[4] == 1):
+    if(ranks[0] == 1 and ranks[1] == 10 and ranks[2] == 11 and ranks[3] == 12 and ranks[4] == 13):
         return "Royal"
     else:
         i = 0
