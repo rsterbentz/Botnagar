@@ -24,61 +24,57 @@ def IsTen(card): #checks to see if a card's rank is 10
 
 def Print5Cards(cards): #prints the five random cards
 
-    line1 = str() #needs to eventually be replaced with "```"
+    line1 = "```"
     i = 0
     while(i < 5):
-        line1 = line1+"|-----| "
+        line1 = line1+chr(9556)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9559)+" "
         i = i + 1
 
     line2 = str()
     i = 0
     while(i < 5):
-        line2 = line2+"|"
+        line2 = line2+chr(9553)
         if(IsTen(cards[i][0])):
             line2 = line2+"10"
         else:
             line2 = line2+" "+cards[i][0]
-        line2 = line2+"   | "
+        line2 = line2+"   "+chr(9553)+" "
         i = i + 1
 
     line3 = str()
     i = 0
     while(i < 5):
-        line3 = line3+"|  "
+        line3 = line3+chr(9553)+"  "
         if(cards[i][1] == "S"):
-            line3 = line3+"S"
+            line3 = line3+chr(9824)
         elif(cards[i][1] == "H"):
-            line3 = line3+"H"
+            line3 = line3+chr(9829)
         elif(cards[i][1] == "D"):
-            line3 = line3+"D"
+            line3 = line3+chr(9830)
         else:
-            line3 = line3+"C"
-        line3 = line3+"  | "
+            line3 = line3+chr(9827)
+        line3 = line3+"  "+chr(9553)+" "
         i = i + 1
 
     line4 = str()
     i = 0
     while(i < 5):
-        line4 = line4+"|   "
+        line4 = line4+chr(9553)+"   "
         if(IsTen(cards[i][0])):
             line4 = line4+"10"
         else:
             line4 = line4+cards[i][0]+" "
-        line4 = line4+"| "
+        line4 = line4+chr(9553)+" "
         i = i + 1
 
     line5 = str()
     i = 0
     while(i < 5):
-        line5 = line5+"|-----| "
+        line5 = line5+chr(9562)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9552)+chr(9565)+" "
         i = i + 1
     line5 = line5+"```"
 
-    print line1
-    print line2
-    print line3
-    print line4
-    print line5
+    return line1+"\n"+line2+"\n"+line3+"\n"+line4+"\n"+line5+"\n"
 
 def IsFlush(cards): #checks to see if hand is a flush
     i = 0
