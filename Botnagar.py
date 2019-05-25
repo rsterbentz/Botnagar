@@ -33,6 +33,16 @@ deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
         "AD","2D","3D","4D","5D","6D","7D","8D","9D","XD","JD","QD","KD",
         "AC","2C","3C","4C","5C","6C","7C","8C","9C","XC","JC","QC","KC")
 
+# bhat club toggle test (see line 679)
+players = {
+"Porsche":"out",
+"Jumping Dog":"out",
+"Renskay":"out",
+"Tovar":"out",
+"Desk":"out",
+"tuxy":"out",
+"Prolomaster":"out"}
+
 def containsNumbers(s):
     return any(character.isdigit() for character in s)
 
@@ -654,6 +664,7 @@ async def on_message(message):
             msg = PrintCards(n, cards)
             await client.send_message(message.channel, msg)
 
+    #bhat poker
     elif message.content.startswith('!bhat poker'):
         cards = list()
         BPF.Select5Cards(cards)
@@ -663,6 +674,25 @@ async def on_message(message):
             msg = msg +"*{AUTHOR}, you've gotten ".format(AUTHOR = AUTHOR)+result+"!*"
         else:
             msg = msg +"*Your highest card is the "+BPF.FormatRank(result)+" of "+BPF.FormatSuit(result)+"!*"
+        await client.send_message(message.channel, msg)
+
+    # bhat club toggle test (see line 36)
+    elif(message.content.startswith("!bhat club in")):
+        if(players[AUTHOR] == "out"):
+            players[AUTHOR] = "in"
+            msg = "*{AUTHOR}, you are now in the club!*"
+        else:
+            msg = "*You are already in the club, {AUTHOR}!*"
+        msg = msg.format(AUTHOR = AUTHOR)
+        await client.send_message(message.channel, msg)
+
+    elif(message.content.startswith("!bhat club out")):
+        if(players[AUTHOR] == "in"):
+            players[AUTHOR] = "out"
+            msg = "*I'm so sorry {AUTHOR}. You are no longer in the club.*"
+        else:
+            msg = "*Um, {AUTHOR}? How can you leave the club if you aren't even in it?*"
+        msg = msg.format(AUTHOR = AUTHOR)
         await client.send_message(message.channel, msg)
 
     # Wrong command check
