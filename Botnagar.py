@@ -22,7 +22,16 @@ import aiohttp
 # Still in development
 import Craps
 
+# Used for !bhat poker
+import BotnagarPokerFunctions
+
 TOKEN = Tokens.RELEASE
+
+# global list for access by multiple functions
+deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
+        "AH","2H","3H","4H","5H","6H","7H","8H","9H","XH","JH","QH","KH",
+        "AD","2D","3D","4D","5D","6D","7D","8D","9D","XD","JD","QD","KD",
+        "AC","2C","3C","4C","5C","6C","7C","8C","9C","XC","JC","QC","KC")
 
 def containsNumbers(s):
     return any(character.isdigit() for character in s)
@@ -283,6 +292,7 @@ async def on_message(message):
         '\n    - !bhat krypto *[Maybe you can\'t solve this one? Give me 6 numbers like this n1, n2, n3, n4, n5, target]*'
         '\n    - !bhat factor *[I can simplify... err... some trinomials. Give me a, b, and c!]*'
         '\n    - !bhat cards *[Tell me how many playing cards you want. I will give them to you at random!]*'
+        '\n    - !bhat poker *[Want to play some poker? Your luck may be tested!]*'
         )
         msg = msg.format(AUTHOR = AUTHOR, MaxPlayer = MaxPlayer, n1 = n1, n2 = n2, n3 = n3, n4 = n4)
         await client.send_message(message.channel, msg)
@@ -564,10 +574,6 @@ async def on_message(message):
         n = int(string[12:])
 
         def SelectCards(n, cards):
-            deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
-                    "AH","2H","3H","4H","5H","6H","7H","8H","9H","XH","JH","QH","KH",
-                    "AD","2D","3D","4D","5D","6D","7D","8D","9D","XD","JD","QD","KD",
-                    "AC","2C","3C","4C","5C","6C","7C","8C","9C","XC","JC","QC","KC")
             i = 0
             while(i < n):
                 new = False
@@ -646,8 +652,18 @@ async def on_message(message):
             cards = list()
             SelectCards(n, cards)
             msg = PrintCards(n, cards)
-            msg = '*Make sure you are not of the using a phone! Err..*\n' + msg
             await client.send_message(message.channel, msg)
+
+    elif message.content.startswith('!bhat poker'):
+        cards = list()
+        BotnagarPokerFunctions.Select5Cards(cards)
+        BotnagarPokerFunctions.Print5Cards(cards)
+        result = BotnagarPokerFunctions.Test5Cards(cards)
+        if(result not in deck):
+            msg = "*{AUTHOR}, you've gotten ".format(AUTHOR = AUTHOR)+result+"!*"
+        else:
+            msg = "*Your highest card is the "+BotnagarPokerFunctions.FormatRank(result)+" of "+BotnagarPokerFunctions.FormatSuit(result)+"!*"
+        await client.send_message(message.channel, msg)
 
     # Wrong command check
     elif message.content.startswith('!bhat'):
