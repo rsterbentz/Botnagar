@@ -23,7 +23,7 @@ import aiohttp
 import Craps
 
 # Used for !bhat poker
-import BotnagarPokerFunctions
+import BotnagarPokerFunctions as BPF
 
 TOKEN = Tokens.RELEASE
 
@@ -656,13 +656,13 @@ async def on_message(message):
 
     elif message.content.startswith('!bhat poker'):
         cards = list()
-        BotnagarPokerFunctions.Select5Cards(cards)
-        msg = BotnagarPokerFunctions.Print5Cards(cards)
-        result = BotnagarPokerFunctions.Test5Cards(cards)
+        BPF.Select5Cards(cards)
+        msg = BPF.Print5Cards(cards)
+        result = BPF.Test5Cards(cards)
         if(result not in deck):
             msg = msg +"*{AUTHOR}, you've gotten ".format(AUTHOR = AUTHOR)+result+"!*"
         else:
-            msg = msg +"*Your highest card is the "+BotnagarPokerFunctions.FormatRank(result)+" of "+BotnagarPokerFunctions.FormatSuit(result)+"!*"
+            msg = msg +"*Your highest card is the "+BPF.FormatRank(result)+" of "+BPF.FormatSuit(result)+"!*"
         await client.send_message(message.channel, msg)
 
     # Wrong command check
