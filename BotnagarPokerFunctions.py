@@ -254,7 +254,7 @@ def Test5Cards(cards): #checks for hand and returns rank
     elif(IsFlush(cards) == True):
         return "a Flush"
 
-    elif(IsStraight(cards) == True):
+    elif(IsStraight(cards) == "Royal" or IsStraight(cards) == "Straight"):
         return "a Straight"
 
     elif(IsThree(cards) == True):
