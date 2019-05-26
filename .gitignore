@@ -5,3 +5,4 @@ Tokens.py
 # Might store data (eg. primescore) as .dat file
 
 __pycache__
+.DS_Store
