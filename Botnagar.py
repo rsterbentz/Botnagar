@@ -35,13 +35,13 @@ deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
 
 # bhat club toggle test (see line 679)
 players = {
-"Porsche":"out",
-"Jumping Dog":"out",
-"Renskay":"out",
-"Tovar":"out",
-"Desk":"out",
-"tuxy":"out",
-"Prolomaster":"out"}
+"Dom":"out",
+"Etin Window":"out",
+"Etin Spyder":"out",
+"Rodger":"out",
+":b: :regional_indicator_r: :regional_indicator_e: :regional_indicator_a: :regional_indicator_d:":"out",
+":b: oston":"out",
+":b: arry":"out"}
 
 def containsNumbers(s):
     return any(character.isdigit() for character in s)
