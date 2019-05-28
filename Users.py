@@ -1,16 +1,30 @@
 import json
+import os
 
+# List of all users with accounts
 ActiveUsers = []
-UserDataDirectory = 'Userdata'
+
+# Where user data is stored
+UserDataDirectory = 'Userdata/'
+
+# Create folder if nonexistent
+if not os.path.exists(UserDataDirectory):
+    os.makedirs(UserDataDirectory)
 
 class User:
     def __init__(self, nick, bhatnick = False, wallet = 0, **kwargs):
+
+        # nick - discord nickname in server
         self.nick = nick
+
+        # bhatnick - name given by bhat
         if bhatnick:
             self.bhatnick = bhatnick
         else:
             self.bhatnick = nick
         self.wallet = wallet
+
+        # In case extra variables are stored
         self.__dict__.update(kwargs)
         self.save()
 
@@ -22,6 +36,7 @@ class User:
         file.close()
 
     def sendCoin(self, other, amt):
+        # Negative coins reverses transaction
         if amt < 0:
             return False
         elif amt > self.wallet:
