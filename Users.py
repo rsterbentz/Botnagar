@@ -9,14 +9,20 @@ class User:
             self.bhatnick = nick
         self.wallet = wallet
         self.save()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7dbe437f02741ab8e9479dbcf0ef3c9a8cc39211
     def save(self):
         dir = 'Users/' + self.nick
         file = open(dir, 'w')
         data = vars(self)
         json.dump(data, file)
         file.close()
+<<<<<<< HEAD
         
+=======
+>>>>>>> 7dbe437f02741ab8e9479dbcf0ef3c9a8cc39211
     def SendCoin(self, other, amt):
         if amt < 0:
             return False
