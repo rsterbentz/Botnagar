@@ -31,7 +31,7 @@ import BotnagarPokerFunctions as BPF
 # User control
 import Users
 
-TOKEN = Tokens.RELEASE
+TOKEN = Tokens.BETA
 
 # global list for access by multiple functions
 deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
@@ -678,5 +678,6 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-for file in os.listdir(Users.UserDataDirectory)
+for nick in os.listdir(Users.UserDataDirectory):
+    Users.loadUser(nick)
 client.run(TOKEN)

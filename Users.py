@@ -54,8 +54,6 @@ def loadUser(nick):
         file = open(dir, 'r')
         dict = json.load(file)
         file.close()
-        u = User(**dict)
-        ActiveUsers.append(u)
-        return u
+        ActiveUsers.append(User(**dict))
     except:
         return False
