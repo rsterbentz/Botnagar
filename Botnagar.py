@@ -3,6 +3,9 @@
 
 import discord, random
 
+# OS used for file manipulation
+import os
+
 # Tokens.py contains private discord tokens for beta and release bhat - not in git
 import Tokens
 
@@ -707,6 +710,7 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
+    # MUST READ ALL PRIOR USER CLASSES
     await client.change_presence(game=discord.Game(name = '...it!'))
     print('Logged in as')
     print(client.user.name)
