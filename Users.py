@@ -1,5 +1,8 @@
 import json
 
+ActiveUsers = []
+UserDataDirectory = 'Userdata'
+
 class User:
     def __init__(self, nick, bhatnick = False, wallet = 0, **kwargs):
         self.nick = nick
@@ -12,7 +15,7 @@ class User:
         self.save()
 
     def save(self):
-        dir = 'Users/' + self.nick
+        dir = UserDataDirectory + self.nick
         file = open(dir, 'w')
         data = vars(self)
         json.dump(data, file)
@@ -30,11 +33,14 @@ class User:
             other.save()
 
 def loadUser(nick):
+    global ActiveUsers
     try:
-        dir = 'Users/' + nick
+        dir = UserDataDirectory + nick
         file = open(dir, 'r')
         dict = json.load(file)
         file.close()
-        return User(**dict)
+        u = User(**dict)
+        ActiveUsers.append(u)
+        return u
     except:
         return False

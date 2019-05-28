@@ -28,6 +28,9 @@ import Craps
 # Used for !bhat poker
 import BotnagarPokerFunctions as BPF
 
+# User control
+import Users
+
 TOKEN = Tokens.RELEASE
 
 # global list for access by multiple functions
@@ -717,4 +720,5 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+for file in os.listdir(Users.UserDataDirectory)
 client.run(TOKEN)
