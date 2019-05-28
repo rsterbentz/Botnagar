@@ -79,49 +79,6 @@ def factor(n):
     l.sort()
     return l
 
-# Counts the number of numbers in msg
-# and saves data to Benford.dat
-def BenfordCount(msg):
-
-        # Try to open the file. If not, build file.
-        try:
-            BenfordFile = open('Benford.dat', 'r')
-
-            # Take data from file and transfer to list
-            RawData = BenfordFile.readlines()
-            BenfordFile.close()
-        except:
-            BenfordFile = open('Benford.dat', 'w')
-            BenfordFile.write('0:0\n1:0\n2:0\n3:0\n4:0\n5:0\n6:0\n7:0\n8:0\n9:0\n')
-            BenfordFile.close()
-
-            # Take data from file and transfer to list
-            BenfordFile = open('Benford.dat', 'r')
-            RawData = BenfordFile.readlines()
-            BenfordFile.close()
-
-        # Take raw data and turn into list
-        BenfordData = []
-        for x in RawData:
-            s = str(x)[2:-1]
-            BenfordData.append(int(s))
-
-        # Look for integer i in message, add count to BenfordData
-        for i in range(10):
-            count = msg.count(str(i))
-            BenfordData[i] = BenfordData[i] + count
-
-        # Convert Benford data back into string
-        s = ''
-        for i in range(10):
-            s = s + '{}:{}\n'.format(i, BenfordData[i])
-
-        # Save data back to Benford.dat
-        BenfordFile = open('Benford.dat', 'w')
-        BenfordFile.write(s)
-        BenfordFile.close()
-
-
 # Roll 2 dice at random - used for !bhat roll
 def rolldice():
     a=random.choice([1,2,3,4,5,6])
