@@ -1,8 +1,11 @@
+# Tokens.py contains the private discord tokens
 Tokens.py
-# Tokens.py contains the private discord tokens for
 
 *.dat
 # Might store data (eg. primescore) as .dat file
 
 __pycache__
 .DS_Store
+
+# Don't share user info
+Users/*
