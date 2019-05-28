@@ -1,13 +1,14 @@
 import json
 
 class User:
-    def __init__(self, nick, bhatnick = False, wallet = 0):
+    def __init__(self, nick, bhatnick = False, wallet = 0, **kwargs):
         self.nick = nick
         if bhatnick:
             self.bhatnick = bhatnick
         else:
             self.bhatnick = nick
         self.wallet = wallet
+        self.__dict__.update(kwargs)
         self.save()
 
     def save(self):
@@ -17,7 +18,7 @@ class User:
         json.dump(data, file)
         file.close()
 
-    def SendCoin(self, other, amt):
+    def sendCoin(self, other, amt):
         if amt < 0:
             return False
         elif amt > self.wallet:
@@ -28,7 +29,7 @@ class User:
             self.save()
             other.save()
 
-def LoadUser(nick):
+def loadUser(nick):
     try:
         dir = 'Users/' + nick
         file = open(dir, 'r')
