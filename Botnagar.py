@@ -40,6 +40,7 @@ deck = ("AS","2S","3S","4S","5S","6S","7S","8S","9S","XS","JS","QS","KS",
         "AC","2C","3C","4C","5C","6C","7C","8C","9C","XC","JC","QC","KC")
 
 # bhat club toggle test (see line 679)
+#### WILL SOON PHASE OUT
 players = {
 'Dom':'out',
 'Etin Window':'out',
@@ -670,7 +671,7 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-    # MUST READ ALL PRIOR USER CLASSES
+    ### MUST READ ALL PRIOR USER CLASSES
     await client.change_presence(game=discord.Game(name = '...it!'))
     print('Logged in as')
     print(client.user.name)

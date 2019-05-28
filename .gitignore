@@ -8,4 +8,4 @@ __pycache__
 .DS_Store
 
 # Don't share user info
-Users/*
+Userdata/*
