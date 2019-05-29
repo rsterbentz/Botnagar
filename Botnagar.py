@@ -705,7 +705,7 @@ async def on_message(message):
         string = str(message.content)[12:]
         chordname = cid.chord_type(string.split(' '))
         msg = "*I am believing that your chord is the {CHORD}, yes?*"
-        msg.format(CHORD = chordname)
+        msg = msg.format(CHORD = chordname)
         await client.send_message(message.channel, msg)
 
     # Wrong command check
