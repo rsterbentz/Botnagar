@@ -73,7 +73,7 @@ def chord_type(args):
                         notedist = abs(ii - jj)
                         if abs(ii - jj) > 6:
                             notedist = 12 - notedist
-        print('{} or {}'.format(chordlist[notedist][0], chordlist[notedist][1]))
+        return '{} or {}'.format(chordlist[notedist][0], chordlist[notedist][1])
 
     else:
         pitchclass = {}
