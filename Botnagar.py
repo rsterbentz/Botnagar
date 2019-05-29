@@ -25,6 +25,9 @@ import Craps
 # Used for !bhat poker
 import BotnagarPokerFunctions as BPF
 
+# Used for !bhat chord
+import chord_id as cid
+
 TOKEN = Tokens.RELEASE
 
 # global list for access by multiple functions
@@ -695,6 +698,14 @@ async def on_message(message):
         else:
             msg = "*Um, {AUTHOR}? How can you leave the club if you aren't even in it?*"
         msg = msg.format(AUTHOR = AUTHOR)
+        await client.send_message(message.channel, msg)
+
+    # bhat chord
+    elif message.content.startswith('!bhat chord'):
+        string = str(message.content)[12:]
+        chordname = cid.chord_type(string.split(' '))
+        msg = "*I am believing that your chord is the {CHORD}, yes?*"
+        msg.format(CHORD = chordname)
         await client.send_message(message.channel, msg)
 
     # Wrong command check
